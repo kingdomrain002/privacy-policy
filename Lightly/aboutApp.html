@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title data-zh="轻减 Lightly · 无负罪感的减脂微习惯" data-en="Lightly · A Guilt-Free Micro-Habit App">轻减 Lightly · 无负罪感的减脂微习惯</title>
+<meta name="description" data-zh="轻减（Lightly）是一款无负罪感的减脂微习惯 App。不催不罚，每天三件小事，慢慢养成减脂习惯。" data-en="Lightly is a guilt-free micro-habit app for weight loss. No pressure, no punishment — three small things a day.">
+<style>
+  :root {
+    --blue: #5AC8FA;
+    --green: #34C759;
+    --text: #1C1C1E;
+    --muted: #8E8E93;
+    --bg: #F5FAFD;
+    --card: #FFFFFF;
+    --radius: 20px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 24px;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+  .logo {
+    font-weight: 700;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .logo .dot {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px; height: 30px;
+    border-radius: 9px;
+    background: linear-gradient(135deg, var(--blue), var(--green));
+    font-size: 16px;
+  }
+  .lang-btn {
+    border: 1.5px solid var(--blue);
+    background: transparent;
+    color: var(--blue);
+    font-size: 14px;
+    font-weight: 600;
+    padding: 8px 16px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: all .15s ease;
+  }
+  .lang-btn:hover { background: var(--blue); color: #fff; }
+  .hero {
+    text-align: center;
+    padding: 48px 24px 40px;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+  .badge {
+    display: inline-block;
+    background: rgba(90, 200, 250, .15);
+    color: #1474a0;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: 999px;
+    margin-bottom: 20px;
+  }
+  .hero h1 {
+    font-size: 54px;
+    font-weight: 800;
+    letter-spacing: -1px;
+    background: linear-gradient(135deg, var(--blue), var(--green));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .hero .tagline {
+    font-size: 22px;
+    font-weight: 600;
+    margin-top: 8px;
+  }
+  .hero .sub {
+    color: var(--muted);
+    font-size: 16px;
+    max-width: 560px;
+    margin: 16px auto 0;
+  }
+  section { max-width: 960px; margin: 0 auto; padding: 28px 24px; }
+  h2 {
+    font-size: 26px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 6px;
+  }
+  .section-hint {
+    text-align: center;
+    color: var(--muted);
+    font-size: 14px;
+    margin-bottom: 24px;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+  }
+  .card {
+    background: var(--card);
+    border-radius: var(--radius);
+    padding: 24px;
+    box-shadow: 0 2px 12px rgba(28, 28, 30, .06);
+  }
+  .card .icon { font-size: 34px; margin-bottom: 10px; }
+  .card h3 { font-size: 18px; font-weight: 700; margin-bottom: 6px; }
+  .card p { color: var(--muted); font-size: 14px; }
+  .features {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .feature {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    background: var(--card);
+    border-radius: 16px;
+    padding: 16px 20px;
+    box-shadow: 0 2px 12px rgba(28, 28, 30, .05);
+  }
+  .feature .check {
+    flex-shrink: 0;
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    background: rgba(52, 199, 89, .15);
+    color: var(--green);
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+  }
+  .feature h3 { font-size: 16px; font-weight: 700; }
+  .feature p { color: var(--muted); font-size: 14px; }
+  .privacy {
+    background: linear-gradient(135deg, rgba(90,200,250,.12), rgba(52,199,89,.12));
+    border-radius: var(--radius);
+    padding: 28px 24px;
+    text-align: center;
+  }
+  .privacy h2 { margin-bottom: 12px; }
+  .privacy p { color: #3a3a3c; max-width: 620px; margin: 0 auto; font-size: 15px; }
+  footer {
+    text-align: center;
+    color: var(--muted);
+    font-size: 13px;
+    padding: 36px 24px 48px;
+  }
+  @media (max-width: 600px) {
+    .hero h1 { font-size: 42px; }
+    .hero .tagline { font-size: 19px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="logo"><span class="dot">💧</span><span data-zh="轻减" data-en="Lightly">轻减</span></div>
+  <button class="lang-btn" id="langToggle" aria-label="Switch language">EN</button>
+</div>
+
+<header class="hero">
+  <span class="badge" data-zh="TestFlight 内测中" data-en="Now in TestFlight beta">TestFlight 内测中</span>
+  <h1 data-zh="轻减" data-en="Lightly">轻减</h1>
+  <p class="tagline" data-zh="无负罪感的减脂微习惯 App" data-en="A guilt-free micro-habit app for weight loss">无负罪感的减脂微习惯 App</p>
+  <p class="sub" data-zh="不催你、不罚你、不拿「连续打卡」绑架你，只用每天 30 秒～2 分钟的小事，陪你慢慢养成减脂习惯。"
+     data-en="No pressure, no punishment, no streak-shaming — just small 30-second to 2-minute habits that gently build a healthier routine.">
+    不催你、不罚你、不拿「连续打卡」绑架你，只用每天 30 秒～2 分钟的小事，陪你慢慢养成减脂习惯。
+  </p>
+</header>
+
+<section>
+  <h2 data-zh="每天三件小事" data-en="Three small things a day">每天三件小事</h2>
+  <p class="section-hint" data-zh="减脂三角，覆盖运动、喝水、睡眠" data-en="Move, hydrate, and sleep — the weight-loss triangle">减脂三角，覆盖运动、喝水、睡眠</p>
+  <div class="grid">
+    <div class="card">
+      <div class="icon">🦵</div>
+      <h3 data-zh="深蹲 30 个" data-en="Squat 30 reps">深蹲 30 个</h3>
+      <p data-zh="做不动了？当场缩到 3 个也算赢。" data-en="Too much? Shrink it to 3 — it still counts.">做不动了？当场缩到 3 个也算赢。</p>
+    </div>
+    <div class="card">
+      <div class="icon">💧</div>
+      <h3 data-zh="喝水 8 杯" data-en="Drink 8 cups">喝水 8 杯</h3>
+      <p data-zh="每喝一杯点一下 +1，轻松无负担。" data-en="Tap +1 for every cup — easy, no fuss.">每喝一杯点一下 +1，轻松无负担。</p>
+    </div>
+    <div class="card">
+      <div class="icon">😴</div>
+      <h3 data-zh="早睡 / 早起" data-en="Early to bed / early to rise">早睡 / 早起</h3>
+      <p data-zh="时间自己定，还能往后调。" data-en="Pick your own time — and adjust it later.">时间自己定，还能往后调。</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2 data-zh="核心特色" data-en="Core features">核心特色</h2>
+  <p class="section-hint" data-zh="一切设计，只为让你没有负罪感" data-en="Everything is designed to keep guilt away">一切设计，只为让你没有负罪感</p>
+  <div class="features">
+    <div class="feature">
+      <span class="check">✓</span>
+      <div>
+        <h3 data-zh="一键打卡" data-en="One-tap check-in">一键打卡</h3>
+        <p data-zh="不拍照、不输数字、不填表格，点一下就好。" data-en="No photos, no numbers, no forms — just one tap.">不拍照、不输数字、不填表格，点一下就好。</p>
+      </div>
+    </div>
+    <div class="feature">
+      <span class="check">✓</span>
+      <div>
+        <h3 data-zh="目标可缩水" data-en="Shrinkable goals">目标可缩水</h3>
+        <p data-zh="状态不好随时把目标改小，改小完成也算赢。" data-en="Shrink your goal anytime — finishing it still counts.">状态不好随时把目标改小，改小完成也算赢。</p>
+      </div>
+    </div>
+    <div class="feature">
+      <span class="check">✓</span>
+      <div>
+        <h3 data-zh="休息日不断签" data-en="Rest days don't break streaks">休息日不断签</h3>
+        <p data-zh="累了就标记休息，不扣你的连续记录。" data-en="Mark a rest day without losing your streak.">累了就标记休息，不扣你的连续记录。</p>
+      </div>
+    </div>
+    <div class="feature">
+      <span class="check">✓</span>
+      <div>
+        <h3 data-zh="零惩罚设计" data-en="Zero punishment">零惩罚设计</h3>
+        <p data-zh="漏了只说「明天再来」，永不出现「你失败了」。" data-en="Miss a day? &ldquo;Come back tomorrow&rdquo; — never &ldquo;you failed.&rdquo;">漏了只说「明天再来」，永不出现「你失败了」。</p>
+      </div>
+    </div>
+    <div class="feature">
+      <span class="check">✓</span>
+      <div>
+        <h3 data-zh="水杯水位" data-en="Water cup progress">水杯水位</h3>
+        <p data-zh="每完成一件习惯，水位涨一点，满杯有小庆祝。" data-en="Each habit fills the cup a little; a full cup brings a small celebration.">每完成一件习惯，水位涨一点，满杯有小庆祝。</p>
+      </div>
+    </div>
+    <div class="feature">
+      <span class="check">✓</span>
+      <div>
+        <h3 data-zh="温柔提醒" data-en="Gentle reminders">温柔提醒</h3>
+        <p data-zh="每天一条本地通知，文案从不 judge。" data-en="One local notification a day, never judgmental.">每天一条本地通知，文案从不 judge。</p>
+      </div>
+    </div>
+    <div class="feature">
+      <span class="check">✓</span>
+      <div>
+        <h3 data-zh="步数参考" data-en="Steps as reference">步数参考</h3>
+        <p data-zh="健康数据仅本机读取，绝不上传、不分享。" data-en="Health data is read locally and never uploaded or shared.">健康数据仅本机读取，绝不上传、不分享。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="privacy">
+    <h2 data-zh="隐私" data-en="Privacy">隐私</h2>
+    <p data-zh="打卡数据只保存在你的设备上。健康数据（步数）仅在首页作为参考展示，不会上传、分享或用于任何其他用途。"
+       data-en="All check-in data stays on your device. Health data (steps) is shown only as a reference and is never uploaded, shared, or used for anything else.">
+      打卡数据只保存在你的设备上。健康数据（步数）仅在首页作为参考展示，不会上传、分享或用于任何其他用途。
+    </p>
+  </div>
+</section>
+
+<footer>
+  <span data-zh="© 2026 轻减 Lightly · 无负罪感，从一件小事开始" data-en="© 2026 Lightly · No guilt — start small">© 2026 轻减 Lightly · 无负罪感，从一件小事开始</span>
+</footer>
+
+<script>
+  (function () {
+    var STORAGE_KEY = 'lightly-lang';
+    var els = document.querySelectorAll('[data-zh][data-en]');
+    var btn = document.getElementById('langToggle');
+
+    function applyLang(lang) {
+      els.forEach(function (el) {
+        el.textContent = el.getAttribute('data-' + lang);
+      });
+      // 切换按钮显示「另一个语言」
+      btn.textContent = (lang === 'zh') ? 'EN' : '中文';
+      document.documentElement.lang = (lang === 'zh') ? 'zh-Hans' : 'en';
+      // 同步 meta description
+      var meta = document.querySelector('meta[name="description"]');
+      if (meta) meta.setAttribute('content', meta.getAttribute('data-' + lang));
+    }
+
+    function toggle() {
+      var current = document.documentElement.lang.startsWith('zh') ? 'zh' : 'en';
+      var next = current === 'zh' ? 'en' : 'zh';
+      try { localStorage.setItem(STORAGE_KEY, next); } catch (e) {}
+      applyLang(next);
+    }
+
+    // 初始语言：优先用户上次选择，其次浏览器语言
+    var stored = null;
+    try { stored = localStorage.getItem(STORAGE_KEY); } catch (e) {}
+    var initial = stored || (navigator.language && navigator.language.toLowerCase().indexOf('zh') === 0 ? 'zh' : 'en');
+    applyLang(initial);
+
+    btn.addEventListener('click', toggle);
+  })();
+</script>
+
+</body>
+</html>
